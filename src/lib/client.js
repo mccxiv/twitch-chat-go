@@ -11,7 +11,7 @@ export function get () {
 
   client = new Client({
     connection: {reconnect: true},
-    // identity: {username, password}, // Anon for debugging.
+    identity: {username, password},
     channels: [channel]
   })
   client.connect()

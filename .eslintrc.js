@@ -10,8 +10,11 @@ module.exports = {
   plugins: [
     'html'
   ],
+  globals: {fetch: false},
   // add your custom rules here
-  'rules': {
+  rules: {
+    'spaced-comment': 0,
+    'no-return-assign': 0,
     'no-unused-vars': 1,
     'block-spacing': [2, 'never'],
     'no-new': 0,

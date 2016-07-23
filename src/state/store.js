@@ -7,7 +7,7 @@ const initialState = {
   username: '',
   password: '',
   view: 'Home',
-  channel: 'k3nt0456',
+  channel: 'itshafu',
   messages: []
 }
 
@@ -20,21 +20,21 @@ const mutations = {
   view (state, v) {state.view = v},
   onemsg (state, msg) {
     state.messages.push(msg)
-    if (state.messages.length > 50) state.messages.shift()
+    if (state.messages.length > 200) state.messages.shift()
   },
-  manymsg (state, msgs) {
-    state.messages.push(...msgs)
+  manymsgs (state, msgs) {
+    msgs.forEach(msg => {
+      if (state.messages.find(m => m.user.id === msg.user.id)) return
+      state.messages.push(msg)
+    })
     state.messages.sort((a, b) => a.at - b.at)
-    while (state.messages.length > 50) state.messages.shift()
+    while (state.messages.length > 200) state.messages.shift()
   }
 }
-
-console.log(savedState)
 
 const store = new Vuex.Store({state: savedState || initialState, mutations})
 
 store.subscribe((mutation, state) => {
-  console.log('saving')
   window.localStorage.setItem('tcg-state', JSON.stringify(state))
 })
 

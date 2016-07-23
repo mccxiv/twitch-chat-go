@@ -3,12 +3,11 @@
 </template>
 
 <script>
-  import * as client from '../lib/client'
-  import {state, dispatch} from '../state/store'
+  //import * as client from '../lib/client'
+  //import {state, dispatch} from '../state/store'
 
   export default {
     ready () {
-      console.log('hi')
     }
   }
 </script>
