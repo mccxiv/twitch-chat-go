@@ -1,5 +1,5 @@
 <template lang="jade">
-  component.main(:is = 'currentView')
+  component.main(:is='currentView' keep-alive transition='fade')
 </template>
 
 <script>
@@ -18,9 +18,14 @@
 <style lang="stylus">
   @import url(https://fonts.googleapis.com/css?family=Roboto:400);
   html
-    box-sizing: border-box
+    box-sizing border-box
   *, *:before, *:after
-    box-sizing: inherit
+    box-sizing inherit
+
+  .fade-transition
+    transition opacity 300ms ease-out
+  .fade-enter, .fade-leave
+    opacity: 0
 
   .main
     top 0

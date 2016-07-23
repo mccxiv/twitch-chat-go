@@ -11,6 +11,9 @@ const initialState = {
   messages: []
 }
 
+let savedState = window.localStorage.getItem('tcg-state')
+if (savedState) savedState = JSON.parse(savedState)
+
 const mutations = {
   username (state, u) {state.username = u},
   password (state, pw) {state.password = pw},
@@ -26,7 +29,14 @@ const mutations = {
   }
 }
 
-const store = new Vuex.Store({state: initialState, mutations})
+console.log(savedState)
+
+const store = new Vuex.Store({state: savedState || initialState, mutations})
+
+store.subscribe((mutation, state) => {
+  console.log('saving')
+  window.localStorage.setItem('tcg-state', JSON.stringify(state))
+})
 
 export default store
 export const state = store.state

@@ -1,7 +1,16 @@
 <template lang="jade">
   .home
-    input(placeholder='name' @input='changeUsername')
-    input(placeholder='password' type='password' @input='changePassword')
+    input(
+      placeholder='name'
+      value='{{state.username}}'
+      @input='changeUsername'
+    )
+    input(
+      placeholder='password'
+      value='{{state.password}}'
+      type='password'
+      @input='changePassword'
+    )
     i.fa.fa-check.login(v-if='readyToSignIn' @click='login')
 </template>
 
