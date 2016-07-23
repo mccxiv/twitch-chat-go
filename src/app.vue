@@ -16,6 +16,7 @@
 </script>
 
 <style lang="stylus">
+  @import url(https://fonts.googleapis.com/css?family=Roboto:300);
   html
     box-sizing: border-box
   *, *:before, *:after
@@ -27,5 +28,5 @@
     width 100vw
     height 100vh
     position absolute
-    font-family: Verdana, sans-serif
+    font-family: 'Roboto', sans-serif;
 </style>

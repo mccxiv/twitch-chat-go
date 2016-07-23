@@ -3,7 +3,9 @@ import store from '../state/store'
 
 let client
 
-export function instantiate () {
+export function get () {
+  if (client) return client
+
   const Client = tmi.client
   const {username, password, channel} = store.state
 
@@ -13,9 +15,5 @@ export function instantiate () {
     channels: [channel]
   })
   client.connect()
-  return client
-}
-
-export function get () {
   return client
 }
