@@ -4,6 +4,7 @@ import store from '../state/store'
 let client
 
 export function get () {
+  // If channel changed, do stuff
   if (client) return client
 
   const Client = tmi.client

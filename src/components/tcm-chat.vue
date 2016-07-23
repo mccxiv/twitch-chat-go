@@ -4,18 +4,18 @@
       .line(v-for='msg in messages')
         span {{msg.user['display-name'] || msg.user.username}}:
         span {{msg.message}}
-    chat-input.input
-    i.fa.fa-bars.menu
+    tcm-input.input
+    i.fa.fa-bars.menu(v-on:click='openMenu')
 
 </template>
 
 <script>
   import * as client from '../lib/client'
   import {state, dispatch} from '../state/store'
-  import ChatInput from './chat-input.vue'
+  import input from './tcm-input.vue'
 
   export default {
-    components: {'chat-input': ChatInput},
+    components: {'tcm-input': input},
     ready () {
       this.client = client.get()
 
@@ -30,15 +30,21 @@
         const msgs = await resp.json()
         dispatch('manymsgs', msgs)
       })
+
+      this.scroll()
+    },
+    methods: {
+      openMenu: () => dispatch('view', 'Menu'),
+      scroll () {
+        const el = this.$els.messages
+        el.scrollTop = el.scrollHeight
+      }
     },
     computed: {
       messages: () => state.messages
     },
     watch: {
-      messages () {
-        const el = this.$els.messages
-        el.scrollTop = el.scrollHeight
-      }
+      messages () {this.scroll()}
     },
     destroyed () {
       this.client.removeAllListeners()
@@ -52,7 +58,7 @@
     flex-direction column
     .menu
       position absolute
-      top 15px
+      bottom 20px
       right 20px
     .messages
       padding 10px

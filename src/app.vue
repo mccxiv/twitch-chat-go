@@ -1,14 +1,15 @@
 <template lang="jade">
-  component.main(:is='currentView' keep-alive transition='fade')
+  component.main(:is='currentView' transition='fade')
 </template>
 
 <script>
-  import Home from './components/home.vue'
-  import Chat from './components/chat.vue'
+  import Home from './components/tcm-home.vue'
+  import Chat from './components/tcm-chat.vue'
+  import Menu from './components/tcm-menu.vue'
   import {state} from './state/store'
 
   export default {
-    components: {Home, Chat},
+    components: {Home, Chat, Menu},
     computed: {
       currentView: () => state.view
     }
