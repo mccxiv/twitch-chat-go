@@ -1,5 +1,6 @@
 <template lang="jade">
   .menu
+    i.fa.fa-plus(@click='newChat')
     i.fa.fa-times.close(@click='backToChat')
 </template>
 
@@ -8,7 +9,8 @@
 
   export default {
     methods: {
-      backToChat: () => dispatch('view', 'Chat')
+      backToChat: () => dispatch('view', 'Chat'),
+      newChat: () => dispatch('view', 'Join')
     }
   }
 </script>

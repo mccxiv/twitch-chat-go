@@ -6,10 +6,11 @@
   import Home from './components/tcm-home.vue'
   import Chat from './components/tcm-chat.vue'
   import Menu from './components/tcm-menu.vue'
+  import Join from './components/tcm-join.vue'
   import {state} from './state/store'
 
   export default {
-    components: {Home, Chat, Menu},
+    components: {Home, Chat, Menu, Join},
     computed: {
       currentView: () => state.view
     }
@@ -27,6 +28,10 @@
     transition opacity 300ms ease-out
   .fade-enter, .fade-leave
     opacity: 0
+
+  input
+    border none
+    outline none
 
   .main
     top 0

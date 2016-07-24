@@ -3,8 +3,7 @@ import store from '../state/store'
 
 let client
 
-export function get () {
-  // If channel changed, do stuff
+export function make () {
   if (client) return client
 
   const Client = tmi.client
@@ -17,4 +16,9 @@ export function get () {
   })
   client.connect()
   return client
+}
+
+export function kill () {
+  client.disconnect()
+  client = null
 }

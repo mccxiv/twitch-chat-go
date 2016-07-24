@@ -17,7 +17,12 @@ if (savedState) savedState = JSON.parse(savedState)
 const mutations = {
   username (state, u) {state.username = u},
   password (state, pw) {state.password = pw},
+  channel (state, c) {state.channel = c},
   view (state, v) {state.view = v},
+  joinchannel (state) {
+    if (!state.messages.length) return
+    while (state.messages[0].channel !== state.channel) state.messages.shift()
+  },
   onemsg (state, msg) {
     state.messages.push(msg)
     if (state.messages.length > 200) state.messages.shift()

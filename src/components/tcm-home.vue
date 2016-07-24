@@ -41,9 +41,6 @@
     background linear-gradient(135deg, #f8fdfe 0%, #b6fea7 100%)
 
     input
-      border none
-      background none
-      outline none
       margin-bottom 20px
       text-align center
 

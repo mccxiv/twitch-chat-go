@@ -17,7 +17,7 @@
   export default {
     components: {'tcm-input': input},
     ready () {
-      this.client = client.get()
+      this.client = client.make()
 
       this.client.on('message', (channel, user, message) => {
         dispatch('onemsg', {channel, user, message, at: Date.now()})
@@ -46,9 +46,7 @@
     watch: {
       messages () {this.scroll()}
     },
-    destroyed () {
-      this.client.removeAllListeners()
-    }
+    destroyed () {client.kill()}
   }
 </script>
 

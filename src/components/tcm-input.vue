@@ -13,8 +13,5 @@
 </script>
 
 <style scoped lang="stylus">
-  input
-    border none
-    outline none
 
 </style>
