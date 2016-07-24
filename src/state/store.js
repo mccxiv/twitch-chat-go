@@ -20,8 +20,9 @@ const mutations = {
   channel (state, c) {state.channel = c},
   view (state, v) {state.view = v},
   joinchannel (state) {
-    if (!state.messages.length) return
-    while (state.messages[0].channel !== state.channel) state.messages.shift()
+    while (state.messages[0] && state.messages[0].channel !== state.channel) {
+      state.messages.shift()
+    }
   },
   onemsg (state, msg) {
     state.messages.push(msg)
@@ -37,7 +38,7 @@ const mutations = {
   }
 }
 
-const store = new Vuex.Store({state: savedState || initialState, mutations})
+const store = new Vuex.Store({state: initialState, mutations})
 
 store.subscribe((mutation, state) => {
   window.localStorage.setItem('tcg-state', JSON.stringify(state))

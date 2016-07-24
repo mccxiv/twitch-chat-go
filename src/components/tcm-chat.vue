@@ -2,8 +2,8 @@
   .chat
     .messages(v-el:messages)
       .line(v-for='msg in messages')
-        span {{msg.user['display-name'] || msg.user.username}}:
-        span {{msg.message}}
+        span(v-if='msg.user') {{msg.user['display-name'] || msg.user.username}}:
+        span(v-bind:class='{"system-msg": !msg.user}') {{msg.message}}
     tcm-input.input
     i.fa.fa-bars.menu(v-on:click='openMenu')
 
@@ -24,11 +24,19 @@
       })
 
       this.client.on('connected', async () => {
-        const channel = state.channel
-        const url = `https://backlog.gettc.xyz/v1/${channel}?limit=200`
-        const resp = await fetch(url)
+        const {channel} = state
+        const base = `https://backlog.gettc.xyz/v1/${channel}`
+        const twoDaysAgo = Date.now() - 1.728e+8
+        const params = '?limit=200&after=' + twoDaysAgo
+        const resp = await fetch(base + params)
         const msgs = await resp.json()
         dispatch('manymsgs', msgs)
+      })
+
+      this.client.on('disconnected', reason => {
+        const {channel} = state
+        const message = 'Disconnected: ' + reason
+        dispatch('onemsg', {channel, message, at: Date.now(), id: Date.now()})
       })
 
       this.scroll()
@@ -70,6 +78,8 @@
         span:first-child
           font-size 9px
           margin-right 3px
+        .system-msg
+          color gray
     .input
       padding 20px
       padding-top 10px
