@@ -13,6 +13,7 @@ module.exports = {
   globals: {fetch: false},
   // add your custom rules here
   rules: {
+    'brace-style': 0,
     'spaced-comment': 0,
     'no-return-assign': 0,
     'no-unused-vars': 1,

@@ -7,11 +7,11 @@ export function make () {
   if (client) return client
 
   const Client = tmi.client
-  const {username, password, channel} = store.state
+  const {username, password: token, channel} = store.state
 
   client = new Client({
     connection: {reconnect: true},
-    identity: {username, password},
+    identity: {username, token},
     channels: [channel]
   })
   client.connect()

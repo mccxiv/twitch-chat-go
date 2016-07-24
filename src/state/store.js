@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 const initialState = {
   username: '',
-  password: '',
+  token: '',
   view: 'Home',
   channel: 'itshafu',
   messages: []
@@ -16,7 +16,7 @@ if (savedState) savedState = JSON.parse(savedState)
 
 const mutations = {
   username (state, u) {state.username = u},
-  password (state, pw) {state.password = pw},
+  token (state, pw) {state.token = pw},
   channel (state, c) {state.channel = c},
   view (state, v) {state.view = v},
   joinchannel (state) {

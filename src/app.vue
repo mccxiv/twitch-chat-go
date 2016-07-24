@@ -3,7 +3,7 @@
 </template>
 
 <script>
-  import Home from './components/tcm-home.vue'
+  import Home from './components/tcm-login.vue'
   import Chat from './components/tcm-chat.vue'
   import Menu from './components/tcm-menu.vue'
   import Join from './components/tcm-join.vue'
