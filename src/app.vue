@@ -3,14 +3,14 @@
 </template>
 
 <script>
-  import Home from './components/tcm-login.vue'
+  import Login from './components/tcm-login.vue'
   import Chat from './components/tcm-chat.vue'
   import Menu from './components/tcm-menu.vue'
   import Join from './components/tcm-join.vue'
   import {state} from './state/store'
 
   export default {
-    components: {Home, Chat, Menu, Join},
+    components: {Login, Chat, Menu, Join},
     computed: {
       currentView: () => state.view
     }

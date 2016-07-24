@@ -6,7 +6,7 @@ Vue.use(Vuex)
 const initialState = {
   username: '',
   token: '',
-  view: 'Home',
+  view: 'Login',
   channel: 'itshafu',
   messages: []
 }

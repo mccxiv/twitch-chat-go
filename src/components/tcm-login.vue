@@ -12,6 +12,7 @@
     async ready () {
       if (!window.location.hash) return
       const parts = window.location.hash.split('&')
+      window.location.hash = ''
       const withToken = parts.find(p => p.includes('access_token='))
       if (!withToken) return
       const token = withToken.split('=')[1]
