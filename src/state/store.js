@@ -38,7 +38,7 @@ const mutations = {
   }
 }
 
-const store = new Vuex.Store({state: initialState, mutations})
+const store = new Vuex.Store({state: savedState || initialState, mutations})
 
 store.subscribe((mutation, state) => {
   window.localStorage.setItem('tcg-state', JSON.stringify(state))

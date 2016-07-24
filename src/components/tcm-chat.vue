@@ -33,12 +33,6 @@
         dispatch('manymsgs', msgs)
       })
 
-      this.client.on('disconnected', reason => {
-        const {channel} = state
-        const message = 'Disconnected: ' + reason
-        dispatch('onemsg', {channel, message, at: Date.now(), id: Date.now()})
-      })
-
       this.scroll()
     },
     methods: {
