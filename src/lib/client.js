@@ -3,6 +3,10 @@ import store from '../state/store'
 
 let client
 
+export function get () {
+  return client
+}
+
 export function make () {
   if (client) return client
 
