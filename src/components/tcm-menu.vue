@@ -1,10 +1,10 @@
 <template lang="jade">
   .menu
-    .item
-      i.fa.fa-plus(@click='newChat')
+    .item(@click='newChat')
+      i.fa.fa-plus
       | Join Channel
-    .item
-      i.fa.fa-sign-out(@click='signOut')
+    .item(@click='signOut')
+      i.fa.fa-sign-out
       | Sign Out
 
     i.fa.fa-times.close(@click='backToChat')
