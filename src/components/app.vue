@@ -18,7 +18,13 @@
 </script>
 
 <style lang="stylus">
-  @import url(https://fonts.googleapis.com/css?family=Roboto);
+
+  @font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../../node_modules/roboto-fontface/fonts/roboto/Roboto-Regular.woff) format('woff');
+  }
 
   html
     box-sizing border-box
