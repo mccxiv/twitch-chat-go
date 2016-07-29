@@ -1,14 +1,22 @@
 <template lang="jade">
   .login
-    a(href='https://api.twitch.tv/kraken/oauth2/authorize?response_type=token&client_id=b39ix7rp2i5l426ng0h2lij4cfz9htk&redirect_uri=http%3A%2F%2Flocalhost%2F&scope=chat_login')
+    a(href='{{baseUrl + baseParams + clientId + redirectUri}}')
       i.fa.fa-sign-in.sign-in(v-if='!loggingIn')
 </template>
 
 <script>
   import {state, dispatch} from '../state/store'
+  import config from '../lib/config'
 
   export default {
-    data: () => ({state, loggingIn: false}),
+    data: () => ({
+      state,
+      loggingIn: false,
+      baseUrl: 'https://api.twitch.tv/kraken/oauth2/authorize',
+      baseParams: '?response_type=token&scope=chat_login',
+      redirectUri: '&redirect_uri=' + config.REDIRECT_URI,
+      clientId: '&client_id=' + config.CLIENT_ID
+    }),
     async ready () {
       if (!window.location.hash) return
       const parts = window.location.hash.split('&')
