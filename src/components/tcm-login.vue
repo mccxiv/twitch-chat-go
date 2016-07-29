@@ -14,7 +14,7 @@
       loggingIn: false,
       baseUrl: 'https://api.twitch.tv/kraken/oauth2/authorize',
       baseParams: '?response_type=token&scope=chat_login',
-      redirectUri: '&redirect_uri=' + config.REDIRECT_URI,
+      redirectUri: '&redirect_uri=' + encodeURIComponent(config.REDIRECT_URI),
       clientId: '&client_id=' + config.CLIENT_ID
     }),
     async ready () {
