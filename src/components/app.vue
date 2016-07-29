@@ -18,7 +18,8 @@
 </script>
 
 <style lang="stylus">
-  @import url(https://fonts.googleapis.com/css?family=Roboto:400);
+  @import url(https://fonts.googleapis.com/css?family=Roboto);
+
   html
     box-sizing border-box
   *, *:before, *:after
