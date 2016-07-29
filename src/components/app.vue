@@ -3,11 +3,11 @@
 </template>
 
 <script>
-  import Login from './components/tcm-login.vue'
-  import Chat from './components/tcm-chat.vue'
-  import Menu from './components/tcm-menu.vue'
-  import Join from './components/tcm-join.vue'
-  import {state} from './state/store'
+  import Login from './tcm-login.vue'
+  import Chat from './tcm-chat.vue'
+  import Menu from './tcm-menu.vue'
+  import Join from './tcm-join.vue'
+  import {state} from '../state/store'
 
   export default {
     components: {Login, Chat, Menu, Join},
