@@ -2,10 +2,10 @@
   .menu
     .item(@click='newChat')
       i.fa.fa-plus
-      | Join Channel
+      | Change channel
     .item(@click='signOut')
       i.fa.fa-sign-out
-      | Sign Out
+      | Sign out
 
     i.fa.fa-times.close(@click='backToChat')
 </template>
@@ -33,7 +33,7 @@
     align-items center
     justify-content center
     .item
-      width 120px
+      width 145px
       margin-bottom 20px
       i
         margin-right 10px

@@ -8,6 +8,11 @@
     go-input.input
     i.fa.fa-bars.menu(v-on:click='openMenu')
 
+    i.fa.fa-circle-o-notch.fa-spin.loading-spinner(
+      v-show='fetching'
+      transition='fade'
+    )
+
 </template>
 
 <script>
@@ -17,6 +22,7 @@
 
   export default {
     components: {'go-input': input},
+    data () {return {fetching: false}},
     ready () {
       this.client = client.make()
 
@@ -26,11 +32,13 @@
 
       this.client.on('connected', async () => {
         const {channel} = state
+        this.fetching = true
         const base = `https://backlog.gettc.xyz/v1/${channel}`
         const twoDaysAgo = Date.now() - 1.728e+8
         const params = '?limit=200&after=' + twoDaysAgo
         const resp = await fetch(base + params)
         const msgs = await resp.json()
+        this.fetching = false
         dispatch('manymsgs', msgs)
       })
 
@@ -75,8 +83,19 @@
           margin-right 3px
         .system-msg
           color gray
+
     .input
       padding 20px
       padding-top 10px
+
+    .loading-spinner
+      position absolute
+      color gray
+      top 15px
+      right 15px
+      &.fade-leave
+        transition opacity 1s
+        opacity 0
+
 
 </style>
