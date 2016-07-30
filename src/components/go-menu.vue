@@ -32,6 +32,7 @@
     flex-direction column
     align-items center
     justify-content center
+    background linear-gradient(135deg, #f8fdfe 0%, #a7dcfe 100%)
     .item
       width 145px
       margin-bottom 20px

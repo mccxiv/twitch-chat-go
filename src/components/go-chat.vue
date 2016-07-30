@@ -65,6 +65,7 @@
   .chat
     display flex
     flex-direction column
+    background linear-gradient(135deg, #f8fdfe 0%, #e9e1fe 100%)
     .menu
       position absolute
       bottom 20px

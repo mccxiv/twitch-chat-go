@@ -21,10 +21,13 @@
 </script>
 
 <style scoped lang="stylus">
-  input
-    position absolute
-    width 100%
-    top 50%
-    transform translateY(-50%)
-    text-align center
+  .join
+    background linear-gradient(135deg, #f8fdfe 0%, #fee4a7 100%)
+    input
+      background none
+      position absolute
+      width 100%
+      top 50%
+      transform translateY(-50%)
+      text-align center
 </style>

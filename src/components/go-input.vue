@@ -19,3 +19,8 @@
     }
   }
 </script>
+
+<style lang="stylus">
+  input
+    background none
+</style>
