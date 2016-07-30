@@ -70,10 +70,10 @@ var webpackConfig = merge(baseWebpackConfig, {
         )
       }
     }),
-    // extract webpack runtime and module manifest to its own file in order to
+    // extract webpack runtime and module manifest.txt to its own file in order to
     // prevent vendor hash from being updated whenever app bundle is updated
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'manifest',
+      name: 'manifest.txt',
       chunks: ['vendor']
     })*/
   ]
