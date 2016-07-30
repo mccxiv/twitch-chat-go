@@ -20,6 +20,8 @@ spinner.start()
 var assetsPath = path.join(config.build.assetsRoot, config.build.assetsSubDirectory)
 rm('-rf', assetsPath)
 mkdir('-p', assetsPath)
+mkdir('-p', assetsPath + '/static')
+cp('-R', 'src/static/', assetsPath + '/static')
 
 webpack(webpackConfig, function (err, stats) {
   spinner.stop()
