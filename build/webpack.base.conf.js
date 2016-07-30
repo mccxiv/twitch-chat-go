@@ -42,8 +42,7 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel',
         query: {compact: false},
-        include: projectRoot,
-        exclude: /node_modules/
+        include: [projectRoot, /node_modules\/tmi\.js/]
       },
       {
         test: /\.json$/,
