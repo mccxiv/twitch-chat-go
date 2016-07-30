@@ -31,13 +31,10 @@
         if (!response.token.valid) return this.abortLogin()
         dispatch('token', token)
         dispatch('username', response.token.user_name)
-        this.login()
+        if (state.channel) dispatch('view', 'Chat')
+        else dispatch('view', 'Join')
       }
-      catch (e) {this.abortLogin()}
-    },
-    methods: {
-      login: () => dispatch('view', 'Chat'),
-      abortLogin () {this.loggingIn = false}
+      catch (e) {this.loggingIn = false}
     }
   }
 </script>

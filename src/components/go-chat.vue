@@ -5,7 +5,7 @@
         span(v-if='msg.user' v-bind:style='{color: msg.user.color}')
           | {{msg.user['display-name'] || msg.user.username}}:
         span(v-bind:class='{"system-msg": !msg.user}') {{msg.message}}
-    tcm-input.input
+    go-input.input
     i.fa.fa-bars.menu(v-on:click='openMenu')
 
 </template>
@@ -13,10 +13,10 @@
 <script>
   import * as client from '../lib/client'
   import {state, dispatch} from '../state/store'
-  import input from './tcm-input.vue'
+  import input from './go-input.vue'
 
   export default {
-    components: {'tcm-input': input},
+    components: {'go-input': input},
     ready () {
       this.client = client.make()
 

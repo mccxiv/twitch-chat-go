@@ -7,7 +7,7 @@ const initialState = {
   username: '',
   token: '',
   view: 'Login',
-  channel: 'itshafu',
+  channel: '',
   messages: []
 }
 

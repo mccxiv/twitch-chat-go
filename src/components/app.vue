@@ -3,10 +3,10 @@
 </template>
 
 <script>
-  import Login from './tcm-login.vue'
-  import Chat from './tcm-chat.vue'
-  import Menu from './tcm-menu.vue'
-  import Join from './tcm-join.vue'
+  import Login from './go-login.vue'
+  import Chat from './go-chat.vue'
+  import Menu from './go-menu.vue'
+  import Join from './go-join.vue'
   import {state} from '../state/store'
 
   export default {
