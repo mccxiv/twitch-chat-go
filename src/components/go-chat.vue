@@ -24,13 +24,24 @@
     components: {'go-input': input},
     data () {return {fetching: false}},
     ready () {
+      this.fetchBacklog()
       this.client = client.make()
 
       this.client.on('message', (channel, user, message) => {
         dispatch('onemsg', {channel, user, message, at: Date.now()})
       })
 
-      this.client.on('connected', async () => {
+      this.client.on('connected', this.fetchBacklog.bind(this))
+
+      this.scroll()
+    },
+    methods: {
+      openMenu: () => dispatch('view', 'Menu'),
+      scroll () {
+        const el = this.$els.messages
+        el.scrollTop = el.scrollHeight
+      },
+      async fetchBacklog () {
         const {channel} = state
         this.fetching = true
         const base = `https://backlog.gettc.xyz/v1/${channel}`
@@ -40,15 +51,6 @@
         const msgs = await resp.json()
         this.fetching = false
         dispatch('manymsgs', msgs)
-      })
-
-      this.scroll()
-    },
-    methods: {
-      openMenu: () => dispatch('view', 'Menu'),
-      scroll () {
-        const el = this.$els.messages
-        el.scrollTop = el.scrollHeight
       }
     },
     computed: {
