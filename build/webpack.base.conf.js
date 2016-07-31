@@ -2,10 +2,11 @@ var path = require('path')
 var config = require('../config')
 var utils = require('./utils')
 var projectRoot = path.resolve(__dirname, '../', 'src')
+var tmiPath = path.resolve(__dirname, '../', 'node_modules', 'tmi.js')
 
 module.exports = {
   entry: {
-    app: ['whatwg-fetch', './src/main.js']
+    app: ['babel-polyfill', 'whatwg-fetch', './src/main.js']
   },
   output: {
     path: config.build.assetsRoot,
@@ -42,7 +43,7 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel',
         query: {compact: false},
-        include: [projectRoot, /node_modules\/tmi\.js/]
+        include: [projectRoot, tmiPath]
       },
       {
         test: /\.json$/,

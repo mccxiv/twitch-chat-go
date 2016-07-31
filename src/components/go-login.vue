@@ -20,7 +20,8 @@
     async ready () {
       if (!window.location.hash) return
       const parts = window.location.hash.split('&')
-      window.location.hash = ''
+      const cleanUrl = window.location.href.split('#')[0]
+      window.history.replaceState({}, 'Tc GO', cleanUrl)
       const withToken = parts.find(p => p.includes('access_token='))
       if (!withToken) return
       const token = withToken.split('=')[1]
