@@ -24,6 +24,8 @@
     components: {'go-input': input},
     data () {return {fetching: false}},
     ready () {
+      dispatch('onemsg', {message: 'debug: Loaded chat.', at: Date.now()})
+
       this.fetchBacklog()
       this.client = client.make()
 
@@ -31,7 +33,13 @@
         dispatch('onemsg', {channel, user, message, at: Date.now()})
       })
 
-      this.client.on('connected', this.fetchBacklog.bind(this))
+      this.client.on('connected', () => {
+        dispatch('onemsg', {
+          message: 'debug: Connected to server.',
+          at: Date.now()
+        })
+        this.fetchBacklog.bind(this)
+      })
 
       this.scroll()
     },
@@ -42,6 +50,10 @@
         el.scrollTop = el.scrollHeight
       },
       async fetchBacklog () {
+        dispatch('onemsg', {
+          message: 'debug: Fetching backlog.',
+          at: Date.now()
+        })
         const {channel} = state
         this.fetching = true
         const base = `https://backlog.gettc.xyz/v1/${channel}`
@@ -51,6 +63,10 @@
         const msgs = await resp.json()
         this.fetching = false
         dispatch('manymsgs', msgs)
+        dispatch('onemsg', {
+          message: 'debug: Fetched backlog successfully.',
+          at: Date.now()
+        })
       }
     },
     computed: {

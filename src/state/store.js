@@ -30,7 +30,10 @@ const mutations = {
   },
   manymsgs (state, msgs) {
     msgs.forEach(msg => {
-      if (state.messages.find(m => m.user.id === msg.user.id)) return
+      if (state.messages.find(m => {
+        if (!m.user || !msg.user) return false
+        return m.user.id === msg.user.id
+      })) return
       state.messages.push(msg)
     })
     state.messages.sort((a, b) => a.at - b.at)
