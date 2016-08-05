@@ -41,6 +41,14 @@
         this.fetchBacklog.bind(this)
       })
 
+      this.client.on('disconnected', () => {
+        dispatch('onemsg', {
+          message: 'debug: Disconnected from server.',
+          at: Date.now()
+        })
+        this.fetchBacklog.bind(this)
+      })
+
       this.scroll()
     },
     methods: {
