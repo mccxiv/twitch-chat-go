@@ -12,11 +12,7 @@ const initialState = {
 }
 
 let savedState = window.localStorage.getItem('tcg-state')
-if (savedState) {
-  savedState = JSON.parse(savedState)
-  console.log(savedState)
-  savedState.messages = []
-}
+if (savedState) savedState = JSON.parse(savedState)
 
 const mutations = {
   username (state, u) {state.username = u},
