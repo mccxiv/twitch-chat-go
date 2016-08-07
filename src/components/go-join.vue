@@ -10,7 +10,7 @@
   export default {
     methods: {
       changeChannel: e => {
-        dispatch('channel', e.srcElement.value)
+        dispatch('channel', e.srcElement.value.toLowerCase())
       },
       go () {
         dispatch('joinchannel')
