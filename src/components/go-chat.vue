@@ -52,7 +52,8 @@
         el.scrollTop = el.scrollHeight
       },
       debug (msg) {
-        dispatch('onemsg', {message: 'debug: ' + msg, at: Date.now()})
+        // Disabled!
+        //dispatch('onemsg', {message: 'debug: ' + msg, at: Date.now()})
       },
       async fetchBacklog () {
         this.debug('Fetching backlog.')
