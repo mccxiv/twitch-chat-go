@@ -24,25 +24,13 @@
     components: {'go-input': input},
     data () {return {fetching: false}},
     ready () {
-      this.debug('Loaded chat.')
-
       this.fetchBacklog()
       this.client = client.make()
-
       this.client.on('message', (channel, user, message) => {
         dispatch('onemsg', {channel, user, message, at: Date.now()})
       })
-
-      this.client.on('connected', () => {
-        this.debug('Connected to server.')
-        this.fetchBacklog.bind(this)
-      })
-
-      this.client.on('disconnected', () => {
-        this.debug('Disconnected from server.')
-        this.fetchBacklog.bind(this)
-      })
-
+      this.client.on('connected', () => this.fetchBacklog.bind(this))
+      this.client.on('disconnected', () => this.fetchBacklog.bind(this))
       this.scroll()
     },
     methods: {
@@ -51,12 +39,7 @@
         const el = this.$els.messages
         el.scrollTop = el.scrollHeight
       },
-      debug (msg) {
-        // Disabled!
-        //dispatch('onemsg', {message: 'debug: ' + msg, at: Date.now()})
-      },
       async fetchBacklog () {
-        this.debug('Fetching backlog.')
         const {channel} = state
         this.fetching = true
         const base = `https://backlog.gettc.xyz/v1/${channel}`
@@ -65,8 +48,8 @@
         const resp = await fetch(base + params)
         const msgs = await resp.json()
         this.fetching = false
+        dispatch('removeselfmessages')
         dispatch('manymsgs', msgs)
-        this.debug('Fetched backlog successfully.')
       }
     },
     computed: {

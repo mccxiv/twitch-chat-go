@@ -28,6 +28,12 @@ const mutations = {
     state.messages.push(msg)
     if (state.messages.length > 200) state.messages.shift()
   },
+  removeselfmessages (state) {
+    for (let i = state.messages.length - 1; i > -1; i--) {
+      const msg = state.messages[i]
+      if (msg.user && !msg.user.id) state.messages.splice(i, 1)
+    }
+  },
   manymsgs (state, msgs) {
     msgs.forEach(msg => {
       if (state.messages.find(m => {
