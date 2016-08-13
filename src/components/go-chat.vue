@@ -24,14 +24,21 @@
     components: {'go-input': input},
     data () {return {fetching: false}},
     ready () {
+      this.boundScroll = this.scroll.bind(this)
+      this.boundFetch = this.fetchBacklog.bind(this)
       this.fetchBacklog()
       this.client = client.make()
       this.client.on('message', (channel, user, message) => {
         dispatch('onemsg', {channel, user, message, at: Date.now()})
       })
-      this.client.on('connected', () => this.fetchBacklog.bind(this))
-      this.client.on('disconnected', () => this.fetchBacklog.bind(this))
+      this.client.on('connected', this.boundFetch)
+      this.client.on('disconnected', this.boundFetch)
       this.scroll()
+      window.addEventListener('resize', this.boundScroll)
+    },
+    destroyed () {
+      window.removeEventListener('resize', this.boundScroll)
+      client.kill()
     },
     methods: {
       openMenu: () => dispatch('view', 'Menu'),
@@ -57,8 +64,7 @@
     },
     watch: {
       messages () {this.scroll()}
-    },
-    destroyed () {client.kill()}
+    }
   }
 </script>
 
