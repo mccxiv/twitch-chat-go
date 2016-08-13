@@ -73,7 +73,7 @@
       right 20px
     .messages
       padding 10px
-      font-size 12px
+      font-size 15px
       flex 1
       overflow-y auto
       .line
@@ -83,6 +83,9 @@
         span:first-child
           font-size 9px
           margin-right 3px
+          display inline-block
+          min-width 65px
+          text-align right
         .system-msg
           color gray
 
