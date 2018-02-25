@@ -1,4 +1,4 @@
-import tmi from 'tmi.js'
+import twitchjs from 'twitch-js'
 import store from '../state/store'
 
 let client
@@ -10,11 +10,10 @@ export function get () {
 export function make () {
   if (client) return client
 
-  const Client = tmi.client
   const {username, token: password, channel} = store.state
 
-  client = new Client({
-    connection: {reconnect: true},
+  client = new twitchjs.Client({
+    connection: {secure: true, reconnect: true},
     identity: {username, password},
     channels: [channel]
   })

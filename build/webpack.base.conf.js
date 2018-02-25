@@ -2,7 +2,7 @@ var path = require('path')
 var config = require('../config')
 var utils = require('./utils')
 var projectRoot = path.resolve(__dirname, '../', 'src')
-var tmiPath = path.resolve(__dirname, '../', 'node_modules', 'tmi.js')
+var tmiPath = path.resolve(__dirname, '../', 'node_modules', 'twitch-js')
 
 module.exports = {
   entry: {
