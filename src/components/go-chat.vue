@@ -95,10 +95,6 @@
         .system-msg
           color gray
 
-    .input
-      padding 20px
-      padding-top 10px
-
     .loading-spinner
       position absolute
       color gray

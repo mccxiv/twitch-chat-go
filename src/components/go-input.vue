@@ -21,6 +21,11 @@
 </script>
 
 <style lang="stylus">
-  input
-    background none
+  form
+    display flex
+    input
+      background none
+      flex 1
+      padding 20px 20px
+      padding-right 50px
 </style>
