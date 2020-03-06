@@ -13,7 +13,7 @@
       state,
       loggingIn: false,
       baseUrl: 'https://id.twitch.tv/oauth2/authorize',
-      baseParams: '?response_type=token&scope=chat_login',
+      baseParams: '?response_type=token&scope=chat:read+chat:edit',
       redirectUri: '&redirect_uri=' + encodeURIComponent(config.REDIRECT_URI),
       clientId: '&client_id=' + config.CLIENT_ID
     }),
@@ -34,7 +34,7 @@
       try {
         const response = await prom
         if (!response.ok) return this.abortLogin()
-        const responseData = (await response).json()
+        const responseData = await response.json()
         dispatch('token', token)
         dispatch('username', responseData.login)
         if (state.channel) dispatch('view', 'Chat')
