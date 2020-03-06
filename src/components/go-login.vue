@@ -12,7 +12,7 @@
     data: () => ({
       state,
       loggingIn: false,
-      baseUrl: 'https://api.twitch.tv/kraken/oauth2/authorize',
+      baseUrl: 'https://id.twitch.tv/oauth2/authorize',
       baseParams: '?response_type=token&scope=chat_login',
       redirectUri: '&redirect_uri=' + encodeURIComponent(config.REDIRECT_URI),
       clientId: '&client_id=' + config.CLIENT_ID
@@ -26,12 +26,17 @@
       if (!withToken) return
       const token = withToken.split('=')[1]
       this.loggingIn = true
-      const prom = fetch(`https://api.twitch.tv/kraken?oauth_token=${token}`)
+      const prom = fetch('https://id.twitch.tv/oauth2/validate', {
+        headers: {
+          'Authorization': `OAuth ${token}`
+        }
+      })
       try {
-        const response = await (await prom).json()
-        if (!response.token.valid) return this.abortLogin()
+        const response = await prom
+        if (!response.ok) return this.abortLogin()
+        const responseData = (await response).json()
         dispatch('token', token)
-        dispatch('username', response.token.user_name)
+        dispatch('username', responseData.login)
         if (state.channel) dispatch('view', 'Chat')
         else dispatch('view', 'Join')
       }
